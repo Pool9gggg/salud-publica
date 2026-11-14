@@ -1,61 +1,71 @@
 
+
 package pe.saludpublica.model;
 
 import java.time.LocalDateTime;
 
 public class CitaMedica {
 
-    private String idPaciente;
-    private String idDoctor;
-    private String idEspecialidad;
+    private String paciente;
+    private String doctor;
+    private String especialidad;
     private LocalDateTime fechaHora;
+    private String motivo;
     private EstadoCita estado;
 
-    public CitaMedica(String idPaciente, String idDoctor,
-                      String idEspecialidad, LocalDateTime fechaHora,
-                      EstadoCita estado) {
+    public CitaMedica(
+            String paciente,
+            String doctor,
+            String especialidad,
+            LocalDateTime fechaHora,
+            String motivo,
+            EstadoCita estado) {
 
-        if (idPaciente == null) {
-            throw new IllegalArgumentException("El ID del paciente no puede ser nulo");
+        if (paciente == null) {
+            throw new IllegalArgumentException("El paciente no puede ser nulo");
         }
-
-        if (idDoctor == null) {
-            throw new IllegalArgumentException("El ID del doctor no puede ser nulo");
+        if (doctor == null) {
+            throw new IllegalArgumentException("El doctor no puede ser nulo");
         }
-
-        if (idEspecialidad == null) {
-            throw new IllegalArgumentException("El ID de la especialidad no puede ser nulo");
+        if (especialidad == null) {
+            throw new IllegalArgumentException("La especialidad no puede ser nula");
         }
-
         if (fechaHora == null) {
             throw new IllegalArgumentException("La fecha y hora no pueden ser nulas");
         }
-
+        if (motivo == null) {
+            throw new IllegalArgumentException("El motivo no puede ser nulo");
+        }
         if (estado == null) {
             throw new IllegalArgumentException("El estado no puede ser nulo");
         }
 
-        this.idPaciente = idPaciente;
-        this.idDoctor = idDoctor;
-        this.idEspecialidad = idEspecialidad;
+        this.paciente = paciente;
+        this.doctor = doctor;
+        this.especialidad = especialidad;
         this.fechaHora = fechaHora;
+        this.motivo = motivo;
         this.estado = estado;
     }
 
-    public String getIdPaciente() {
-        return idPaciente;
+    public String getPaciente() {
+        return paciente;
     }
 
-    public String getIdDoctor() {
-        return idDoctor;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public String getIdEspecialidad() {
-        return idEspecialidad;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
     public LocalDateTime getFechaHora() {
         return fechaHora;
+    }
+
+    public String getMotivo() {
+        return motivo;
     }
 
     public EstadoCita getEstado() {

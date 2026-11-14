@@ -3,7 +3,6 @@ package pe.saludpublica.model;
 
 public enum EstadoCita {
     PROGRAMADA,
-    CONFIRMADA,
-    CANCELADA,
-    ATENDIDA
+    ATENDIDA,
+    CANCELADA
 }
