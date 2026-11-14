@@ -1,65 +1,88 @@
 
+
 package pe.saludpublica.model;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoctorTest {
 
     @Test
-    @DisplayName("Debe crear un doctor con datos válidos")
-    void shouldCreateDoctorWithValidData() {
+    @DisplayName("Debe crear un doctor correctamente")
+    void shouldCreateDoctorSuccessfully() {
         Doctor doctor = new Doctor(
-                "45678912", "Carlos", "Lopez", "CMP12345"
+                "12345678",
+                "Juan",
+                "Perez",
+                "CMP12345",
+                "CARDIOLOGIA"
         );
 
         assertNotNull(doctor);
     }
 
     @Test
-    @DisplayName("Debe rechazar un doctor sin documento")
-    void shouldRejectDoctorWithoutDocument() {
+    @DisplayName("No debe permitir documento nulo")
+    void shouldThrowExceptionWhenDocumentIsNull() {
         assertThrows(IllegalArgumentException.class, () ->
-                new Doctor(null, "Carlos", "Lopez", "CMP12345")
+                new Doctor(null, "Juan", "Perez",
+                        "CMP12345", "CARDIOLOGIA")
         );
     }
 
     @Test
-    @DisplayName("Debe rechazar un doctor sin nombres")
-    void shouldRejectDoctorWithoutNames() {
+    @DisplayName("No debe permitir nombres nulos")
+    void shouldThrowExceptionWhenNamesAreNull() {
         assertThrows(IllegalArgumentException.class, () ->
-                new Doctor("45678912", null, "Lopez", "CMP12345")
+                new Doctor("12345678", null, "Perez",
+                        "CMP12345", "CARDIOLOGIA")
         );
     }
 
     @Test
-    @DisplayName("Debe rechazar un doctor sin apellidos")
-    void shouldRejectDoctorWithoutSurnames() {
+    @DisplayName("No debe permitir apellidos nulos")
+    void shouldThrowExceptionWhenSurnamesAreNull() {
         assertThrows(IllegalArgumentException.class, () ->
-                new Doctor("45678912", "Carlos", null, "CMP12345")
+                new Doctor("12345678", "Juan", null,
+                        "CMP12345", "CARDIOLOGIA")
         );
     }
 
     @Test
-    @DisplayName("Debe rechazar un doctor sin colegiatura médica")
-    void shouldRejectDoctorWithoutLicense() {
+    @DisplayName("No debe permitir colegiatura nula")
+    void shouldThrowExceptionWhenLicenseIsNull() {
         assertThrows(IllegalArgumentException.class, () ->
-                new Doctor("45678912", "Carlos", "Lopez", null)
+                new Doctor("12345678", "Juan", "Perez",
+                        null, "CARDIOLOGIA")
         );
     }
 
     @Test
-    @DisplayName("Debe devolver correctamente los atributos del doctor")
-    void shouldReturnCorrectDoctorAttributes() {
+    @DisplayName("Debe obtener correctamente los datos del doctor")
+    void shouldReturnDoctorInformation() {
         Doctor doctor = new Doctor(
-                "45678912", "Carlos", "Lopez", "CMP12345"
+                "12345678",
+                "Juan",
+                "Perez",
+                "CMP12345",
+                "CARDIOLOGIA"
         );
 
-        assertEquals("45678912", doctor.getDocumento());
-        assertEquals("Carlos", doctor.getNombres());
-        assertEquals("Lopez", doctor.getApellidos());
+        assertEquals("12345678", doctor.getDocumento());
+        assertEquals("Juan", doctor.getNombres());
+        assertEquals("Perez", doctor.getApellidos());
         assertEquals("CMP12345", doctor.getColegiatura());
+        assertEquals("CARDIOLOGIA", doctor.getEspecialidad());
+    }
+
+    @Test
+    @DisplayName("No debe permitir especialidad nula")
+    void shouldThrowExceptionWhenSpecialtyIsNull() {
+        assertThrows(IllegalArgumentException.class, () ->
+                new Doctor("12345678", "Juan", "Perez",
+                        "CMP12345", null)
+        );
     }
 }
