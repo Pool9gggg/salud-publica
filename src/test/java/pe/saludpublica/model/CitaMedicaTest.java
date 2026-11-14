@@ -1,7 +1,9 @@
 
+
 package pe.saludpublica.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.time.LocalDateTime;
 
@@ -10,11 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CitaMedicaTest {
 
     @Test
-    void CIT001_crearCitaMedicaValida() {
+    @DisplayName("Debe crear una cita médica con datos válidos")
+    void shouldCreateAppointmentWithValidData() {
         CitaMedica cita = new CitaMedica(
-                "PAC001",
-                "DOC001",
-                "ESP001",
+                "PAC001", "DOC001", "ESP001",
                 LocalDateTime.of(2026, 11, 20, 10, 30),
                 EstadoCita.PROGRAMADA
         );
@@ -23,7 +24,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT002_idPacienteNuloDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar una cita sin identificador de paciente")
+    void shouldRejectAppointmentWithoutPatientId() {
         assertThrows(IllegalArgumentException.class, () ->
                 new CitaMedica(
                         null, "DOC001", "ESP001",
@@ -34,7 +36,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT003_idDoctorNuloDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar una cita sin identificador de doctor")
+    void shouldRejectAppointmentWithoutDoctorId() {
         assertThrows(IllegalArgumentException.class, () ->
                 new CitaMedica(
                         "PAC001", null, "ESP001",
@@ -45,7 +48,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT004_idEspecialidadNuloDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar una cita sin identificador de especialidad")
+    void shouldRejectAppointmentWithoutSpecialtyId() {
         assertThrows(IllegalArgumentException.class, () ->
                 new CitaMedica(
                         "PAC001", "DOC001", null,
@@ -56,7 +60,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT005_fechaHoraNulaDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar una cita sin fecha y hora")
+    void shouldRejectAppointmentWithoutDateTime() {
         assertThrows(IllegalArgumentException.class, () ->
                 new CitaMedica(
                         "PAC001", "DOC001", "ESP001",
@@ -66,7 +71,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT006_estadoNuloDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar una cita sin estado")
+    void shouldRejectAppointmentWithoutStatus() {
         assertThrows(IllegalArgumentException.class, () ->
                 new CitaMedica(
                         "PAC001", "DOC001", "ESP001",
@@ -77,11 +83,10 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT007_conservarEstadoValido() {
+    @DisplayName("Debe conservar el estado válido de la cita")
+    void shouldPreserveValidAppointmentStatus() {
         CitaMedica cita = new CitaMedica(
-                "PAC001",
-                "DOC001",
-                "ESP001",
+                "PAC001", "DOC001", "ESP001",
                 LocalDateTime.of(2026, 11, 20, 10, 30),
                 EstadoCita.PROGRAMADA
         );
@@ -90,7 +95,8 @@ class CitaMedicaTest {
     }
 
     @Test
-    void CIT008_gettersDevuelvenDatosCorrectos() {
+    @DisplayName("Debe devolver correctamente los atributos de la cita médica")
+    void shouldReturnCorrectAppointmentAttributes() {
         LocalDateTime fecha = LocalDateTime.of(2026, 11, 20, 10, 30);
 
         CitaMedica cita = new CitaMedica(

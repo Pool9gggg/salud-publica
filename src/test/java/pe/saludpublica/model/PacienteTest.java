@@ -45,7 +45,8 @@ public class PacienteTest {
     }
 
     @Test
-    void PAC003_nombresNulosDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un paciente sin nombres")
+    void shouldRejectPatientWithoutNames() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Paciente("12345678", null, "Perez",
                         "987654321", "juan@gmail.com")
@@ -53,7 +54,8 @@ public class PacienteTest {
     }
 
     @Test
-    void PAC004_apellidosNulosDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un paciente sin apellidos")
+    void shouldRejectPatientWithoutSurnames() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Paciente("12345678", "Juan", null,
                         "987654321", "juan@gmail.com")
@@ -61,7 +63,8 @@ public class PacienteTest {
     }
 
     @Test
-    void PAC005_gettersDevuelvenDatosCorrectos() {
+    @DisplayName("Debe devolver correctamente los atributos del paciente")
+    void shouldReturnCorrectPatientAttributes() {
         Paciente paciente = new Paciente(
                 "12345678", "Juan", "Perez",
                 "987654321", "juan@gmail.com"

@@ -2,13 +2,15 @@
 package pe.saludpublica.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoctorTest {
 
     @Test
-    void DOC001_crearDoctorValido() {
+    @DisplayName("Debe crear un doctor con datos válidos")
+    void shouldCreateDoctorWithValidData() {
         Doctor doctor = new Doctor(
                 "45678912", "Carlos", "Lopez", "CMP12345"
         );
@@ -17,35 +19,40 @@ class DoctorTest {
     }
 
     @Test
-    void DOC002_documentoNuloDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un doctor sin documento")
+    void shouldRejectDoctorWithoutDocument() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Doctor(null, "Carlos", "Lopez", "CMP12345")
         );
     }
 
     @Test
-    void DOC003_nombresNulosDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un doctor sin nombres")
+    void shouldRejectDoctorWithoutNames() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Doctor("45678912", null, "Lopez", "CMP12345")
         );
     }
 
     @Test
-    void DOC004_apellidosNulosDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un doctor sin apellidos")
+    void shouldRejectDoctorWithoutSurnames() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Doctor("45678912", "Carlos", null, "CMP12345")
         );
     }
 
     @Test
-    void DOC005_colegiaturaNulaDebeLanzarExcepcion() {
+    @DisplayName("Debe rechazar un doctor sin colegiatura médica")
+    void shouldRejectDoctorWithoutLicense() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Doctor("45678912", "Carlos", "Lopez", null)
         );
     }
 
     @Test
-    void DOC006_gettersDevuelvenDatosCorrectos() {
+    @DisplayName("Debe devolver correctamente los atributos del doctor")
+    void shouldReturnCorrectDoctorAttributes() {
         Doctor doctor = new Doctor(
                 "45678912", "Carlos", "Lopez", "CMP12345"
         );
